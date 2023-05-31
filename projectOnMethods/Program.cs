@@ -25,7 +25,7 @@ namespace projectOnMethods
             user.Age = int.Parse(Console.ReadLine());
             СheckValues(ref user.Age);
             Console.WriteLine("Есть питомец? ");
-            if (Console.ReadLine() == "да")
+            if (Console.ReadLine().ToLower() == "да")
             {
                 user.HavePet = true;
                 Console.WriteLine("Сколько у вас питомцев? ");
@@ -87,7 +87,7 @@ namespace projectOnMethods
         {
             var User = GetQuestionnaire();
             (string name, string surName, double age, bool havePet, int pets, int favColor, string[] nickPets, string[] colors) = User;
-            Console.WriteLine("Вас зовут : {0}", name);
+            Console.WriteLine("\nВас зовут : {0}", name);
             Console.WriteLine("Ваша фамилия : {0}", surName);
             Console.WriteLine("Ваш возраст: {0}", age);
             if (havePet == true)
