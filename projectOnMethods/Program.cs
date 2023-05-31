@@ -22,19 +22,15 @@ namespace projectOnMethods
             Console.WriteLine("Введите фамилию: ");
             user.Surname = Console.ReadLine();
             Console.WriteLine("Введите возраст: ");
-            if (int.TryParse(Console.ReadLine(), out user.Age))
-            {
+            if (int.TryParse(Console.ReadLine(), out user.Age)) { }
                 СheckValues(ref user.Age);
-            }
             Console.WriteLine("Есть питомец? ");
             if (Console.ReadLine().ToLower() == "да")
             {
                 user.HavePet = true;
                 Console.WriteLine("Сколько у вас питомцев? ");
-                if (int.TryParse(Console.ReadLine(), out user.Pets))
-                {
+                if (int.TryParse(Console.ReadLine(), out user.Pets)) { }
                     СheckValues(ref user.Pets);
-                }
                 user.NickPets = GetNicknames(user.Pets);
             }
             else
@@ -44,10 +40,9 @@ namespace projectOnMethods
                 user.NickPets = GetNicknames(user.Pets);
             }
             Console.WriteLine("Сколько у вас любимых цветов?");
-           if(int.TryParse(Console.ReadLine(),out user.FavColor))
-            {
+           if(int.TryParse(Console.ReadLine(),out user.FavColor)) { }
                 СheckValues(ref user.FavColor);
-            }
+
             user.Colors = GetFavColor(user.FavColor);
 
             return user;
@@ -81,7 +76,7 @@ namespace projectOnMethods
                 if (num <= 0)
                 {
                     Console.WriteLine("Вы неверно ввели значение. Введите еще раз: ");
-                    num = int.Parse(Console.ReadLine());
+                    if(int.TryParse(Console.ReadLine(),out num)) { }
                 }
                 else
                 {
