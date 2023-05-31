@@ -10,6 +10,26 @@ namespace projectOnMethods
     {
         static void Main(string[] args)
         {
+
+        }
+        static void GetQuestionnaire()
+        {
+            (string Name, string Surname, double Age, bool HavePet) user;
+            Console.WriteLine("Введите имя: ");
+            user.Name = Console.ReadLine();
+            Console.WriteLine("Введите фамилию: ");
+            user.Surname = Console.ReadLine();
+            Console.WriteLine("Введите возраст: ");
+            user.Age = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Есть питомец? ");
+            if (Console.ReadLine() == "да")
+            {
+                user.HavePet = true;
+            }
+            else
+            {
+                user.HavePet = false;
+            }
         }
     }
 }
