@@ -14,21 +14,23 @@ namespace projectOnMethods
             ShowQuestionnaire();
             Console.ReadKey();
         }
-        static (string, string, double, bool, int, int, string[], string[]) GetQuestionnaire()
+        static (string, string, int, bool, int, int, string[], string[]) GetQuestionnaire()
         {
-            (string Name, string Surname, double Age, bool HavePet, int Pets, int FavColor, string[] NickPets, string[] Colors) user;
+            (string Name, string Surname, int Age, bool HavePet, int Pets, int FavColor, string[] NickPets, string[] Colors) user;
             Console.WriteLine("Введите имя: ");
             user.Name = Console.ReadLine();
             Console.WriteLine("Введите фамилию: ");
             user.Surname = Console.ReadLine();
             Console.WriteLine("Введите возраст: ");
-            user.Age = Convert.ToDouble(Console.ReadLine());
+            user.Age = int.Parse(Console.ReadLine());
+            СheckValues(ref user.Age);
             Console.WriteLine("Есть питомец? ");
             if (Console.ReadLine() == "да")
             {
                 user.HavePet = true;
                 Console.WriteLine("Сколько у вас питомцев? ");
                 user.Pets = int.Parse(Console.ReadLine());
+                СheckValues(ref user.Pets);
                 user.NickPets = GetNicknames(user.Pets);
             }
             else
@@ -39,8 +41,9 @@ namespace projectOnMethods
             }
             Console.WriteLine("Сколько у вас любимых цветов?");
             user.FavColor = int.Parse(Console.ReadLine());
+            СheckValues(ref user.FavColor);
             user.Colors = GetFavColor(user.FavColor);
-            СheckValues(ref user.Age, ref user.Pets, ref user.FavColor);
+
             return user;
 
         }
@@ -49,6 +52,7 @@ namespace projectOnMethods
             string[] nicknames = new string[pets];
             for (int i = 0; i < pets; i++)
             {
+                Console.WriteLine("кличка {0} питомца:", i + 1);
                 nicknames[i] = Console.ReadLine();
             }
             return nicknames;
@@ -58,29 +62,20 @@ namespace projectOnMethods
             string[] color = new string[NumColor];
             for (int i = 0; i < NumColor; i++)
             {
+                Console.WriteLine("{0} любимый цвет:", i + 1);
                 color[i] = Console.ReadLine();
             }
             return color;
         }
-        static void СheckValues(ref double age, ref int pets, ref int favColor)
+        static void СheckValues(ref int num)
         {
             bool CheckVal = true;
             while (CheckVal)
             {
-                if (age <= 0)
+                if (num <= 0)
                 {
-                    Console.WriteLine("Вы неверно ввели возраст. Введите еще раз: ");
-                    age = int.Parse(Console.ReadLine());
-                }
-                else if (pets < 0)
-                {
-                    Console.WriteLine("Вы неверно ввели количество питомцев. Введите еще раз: ");
-                    pets = int.Parse(Console.ReadLine());
-                }
-                else if (favColor <= 0)
-                {
-                    Console.WriteLine("Вы неверно ввели количество цветов. Введите еще раз: ");
-                    favColor = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Вы неверно ввели значение. Введите еще раз: ");
+                    num = int.Parse(Console.ReadLine());
                 }
                 else
                 {
@@ -104,7 +99,7 @@ namespace projectOnMethods
                     Console.WriteLine(pet);
                 }
             }
-            Console.WriteLine("У вас  любимых цветов:{0}",favColor);
+            Console.WriteLine("У вас  любимых цветов:{0}", favColor);
             Console.WriteLine("Ваши любимые цвета: ");
             foreach (var color in colors)
             {
