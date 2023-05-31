@@ -14,7 +14,7 @@ namespace projectOnMethods
         }
         static void GetQuestionnaire()
         {
-            (string Name, string Surname, double Age, bool HavePet) user;
+            (string Name, string Surname, double Age, bool HavePet, int Pets) user;
             Console.WriteLine("Введите имя: ");
             user.Name = Console.ReadLine();
             Console.WriteLine("Введите фамилию: ");
@@ -25,6 +25,8 @@ namespace projectOnMethods
             if (Console.ReadLine() == "да")
             {
                 user.HavePet = true;
+                Console.WriteLine("Сколько у вас питомцев? ");
+                user.Pets = int.Parse(Console.ReadLine());
             }
             else
             {
