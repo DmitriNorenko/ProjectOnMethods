@@ -11,11 +11,12 @@ namespace projectOnMethods
     {
         static void Main(string[] args)
         {
-
+            ShowQuestionnaire();
+            Console.ReadKey();
         }
-        static void GetQuestionnaire()
+        static (string, string, double, bool, int, int, string[], string[]) GetQuestionnaire()
         {
-            (string Name, string Surname, double Age, bool HavePet, int Pets, int FavColor) user;
+            (string Name, string Surname, double Age, bool HavePet, int Pets, int FavColor, string[] NickPets, string[] Colors) user;
             Console.WriteLine("Введите имя: ");
             user.Name = Console.ReadLine();
             Console.WriteLine("Введите фамилию: ");
@@ -28,17 +29,20 @@ namespace projectOnMethods
                 user.HavePet = true;
                 Console.WriteLine("Сколько у вас питомцев? ");
                 user.Pets = int.Parse(Console.ReadLine());
-                GetNicknames(user.Pets);
+                user.NickPets = GetNicknames(user.Pets);
             }
             else
             {
                 user.HavePet = false;
                 user.Pets = 0;
+                user.NickPets = GetNicknames(user.Pets);
             }
             Console.WriteLine("Сколько у вас любимых цветов?");
             user.FavColor = int.Parse(Console.ReadLine());
-            GetFavColor(user.FavColor);
+            user.Colors = GetFavColor(user.FavColor);
             СheckValues(ref user.Age, ref user.Pets, ref user.FavColor);
+            return user;
+
         }
         static string[] GetNicknames(int pets)
         {
@@ -78,10 +82,33 @@ namespace projectOnMethods
                     Console.WriteLine("Вы неверно ввели количество цветов. Введите еще раз: ");
                     favColor = int.Parse(Console.ReadLine());
                 }
-                else 
+                else
                 {
                     CheckVal = false;
                 }
+            }
+        }
+        static void ShowQuestionnaire()
+        {
+            var User = GetQuestionnaire();
+            (string name, string surName, double age, bool havePet, int pets, int favColor, string[] nickPets, string[] colors) = User;
+            Console.WriteLine("Вас зовут : {0}", name);
+            Console.WriteLine("Ваша фамилия : {0}", surName);
+            Console.WriteLine("Ваш возраст: {0}", age);
+            if (havePet == true)
+            {
+                Console.WriteLine("У вас домашних питомцев: {0}", pets);
+                Console.WriteLine("Клички ваших питомцев: ");
+                foreach (var pet in nickPets)
+                {
+                    Console.WriteLine(pet);
+                }
+            }
+            Console.WriteLine("У вас  любимых цветов:{0}",favColor);
+            Console.WriteLine("Ваши любимые цвета: ");
+            foreach (var color in colors)
+            {
+                Console.WriteLine(color);
             }
         }
     }
